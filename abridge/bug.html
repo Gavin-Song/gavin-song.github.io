@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Abridge - Chrome Summarizer</title>
+		
+		<meta charset="UTF-8">
+		<meta name="description" content="A chrome extension to automatically highlight and summarize webpages">
+		<meta name="keywords" content="Chrome,Extension,Summarize,automatic,github">
+		<meta name="author" content="Gavin Song">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Abridge - Summarizer Extension">
+		<meta property="og:description" content="Chrome extension to automaticlly summarize web articles, and more!">
+		<meta property="og:image" content="https://gavin-song.github.io/abridge/img/main.png">
+		<meta property="og:url" content="https://gavin-song.github.io/abridge">
+		
+		<meta name="twitter:card" content="summary_large_image">
+		<meta property="og:site_name" content="Abridge">
+
+		
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+	</head>
+	
+	<body>
+		<ul class="navbar" id="navbar">
+			<li class="image_icon"><img src="img/icon.png" width="78px" height="78px"></li>
+			<li id="icon"><a href="javascript:void(0);" class="icon" onclick="responsive()">&#9776;</a></li>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="tryitout.html">Try it out</a></li>
+			<li><a href="bug.html">Report a Bug</a></li>
+			<li><a href="donate.html">Donate</a></li>
+			<li><a href="faq.html">FAQ</a></li>
+		</ul>
+		
+		<div style='width: 50%; left: 25%; position: relative; top: 100px;'>
+			<h2 style='text-align:center; margin:10px'>Found a bug?</h2>
+			<p>You can report bugs below or on our github page</p>
+			<p><b>Bug Report Guidelines:</b><br>
+			When reporting a bug, you should follow these guidelines:
+			<ul>
+				<li><b>Be specific as possible:</b> How do I reproduce the bug, what causes the bug? Some
+				helpful data would be links to screenshots, links to webpages where the extension fails, 
+				OS and browser version and version of the extension.</li>
+				<li><b>The extension makes mistakes: </b>Because language is incredibly complex, to provide a
+				quick summary the extension uses some shortcuts. Occasionally, this might cause erroneous data. 
+				Unless the error occurred multiple times in separate sources, you should not submit a bug report.</li>
+				<li><b>Don't Submit Suggestions:</b> This is a bug report page. If you would like to suggest
+				an enhancement or feature, please do so at our <a href="https://github.com/Gavin-Song/abridge">github page</a></li>
+			</ul>
+			<a href="https://www.chiark.greenend.org.uk/~sgtatham/bugs.html">This page</a> offers more info on how to write good bug reports.
+			</p>
+			
+			<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSePyuV0sWRV8Snsr44cYaqLRPLBsyRnat4XczAYxZYNBdZ7IA/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+			<br><br>
+			
+		</div>
+		
+		<script>
+		function responsive() {
+			var x = document.getElementById("navbar");
+			if (x.className === "navbar") {
+				x.className += " responsive";
+			} else {
+				x.className = "navbar";
+			}
+		}
+		</script>
+	</body>
+</html>

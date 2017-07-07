@@ -1,1 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Abridge - Chrome Summarizer</title>
+		
+		<meta charset="UTF-8">
+		<meta name="description" content="A chrome extension to automatically highlight and summarize webpages">
+		<meta name="keywords" content="Chrome,Extension,Summarize,automatic,github">
+		<meta name="author" content="Gavin Song">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Abridge - Summarizer Extension">
+		<meta property="og:description" content="Chrome extension to automaticlly summarize web articles, and more!">
+		<meta property="og:image" content="https://gavin-song.github.io/abridge/img/main.png">
+		<meta property="og:url" content="https://gavin-song.github.io/abridge">
+		
+		<meta name="twitter:card" content="summary_large_image">
+		<meta property="og:site_name" content="Abridge">
 
+		
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+	</head>
+	
+	<body>
+		<ul class="navbar" id="navbar">
+			<li class="image_icon"><img src="img/icon.png" width="78px" height="78px"></li>
+			<li id="icon"><a href="javascript:void(0);" class="icon" onclick="responsive()">&#9776;</a></li>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="tryitout.html">Try it out</a></li>
+			<li><a href="bug.html">Report a Bug</a></li>
+			<li><a href="donate.html">Donate</a></li>
+			<li><a href="faq.html">FAQ</a></li>
+		</ul>
+		
+		<div class="ad">
+			<div class="title_section">
+				<h1 style="margin:0px">SUMMARIZE ANY ARTICLE</h1>
+				<ul class="checkmark">
+					<li>&nbsp;&nbsp;Highlight key sentences</li>
+					<li>&nbsp;&nbsp;Automaticlly generates summary</li>
+					<li>&nbsp;&nbsp;Generates timeline from date data</li>
+					<li>&nbsp;&nbsp;Easy data exporting</li>
+				</ul>
+				
+				<div class="button">
+				Install for Google Chrome
+				</div>
+			</div>
+			<img class="image_section" src="img/sample1.png">
+		</div>
+		
+		<div class="middle">
+			<h1 style='text-align:center'>About the Project</h1>
+			<p>
+				Abridge is a chrome extension designed to summarize and extract meaningful information from 
+				a webpage. In addition to summarizing, it also highlights key sentences in each paragraph in 3 different
+				styles for ease of reading.<br><br>
+				
+				Abridge also extracts key dates and events from the text and forms a timeline of important 
+				events in the article. Finally, Abridge does text analysis such as lexical density, tone and 
+				reading level.<br>
+			</p>
+			<hr>
+			
+			<!--TODO add some images here-->
+			
+			<p>
+				Want to add a feature, fix a bug or something else? Check out our <a href="https://github.com/Gavin-Song/abridge">github page</a>
+			<br><br>
+				Like Abridge? Share with your friends
+				<br>
+				<p style='text-align:center'>
+					<a href='https://www.facebook.com/share.php?u=https://gavin-song.github.io/abridge/'>
+						<img src="img/facebook.png" height=40px width=40px>
+					</a>
+					<a href='http://twitter.com/home?status=https://gavin-song.github.io/abridge/'>
+						<img src="img/twitter.png" height=40px width=40px>
+					</a>
+					
+					<a href='https://plus.google.com/share?url=https://gavin-song.github.io/abridge/'>
+						<img src="img/google+.png" height=40px width=40px>
+					</a>
+
+					<a href='https://github.com/Gavin-Song/abridge'>
+						<img src="img/github.png" height=40px width=40px>
+					</a>
+				</p>
+			</p>
+			
+			<div class="quote">
+				<div class="quote_inside">
+					"I don't think many people have ever read the report. Who has read 26 volumes of this case? How many read the summary? If you read the summary, it takes a long time."
+				</div><br>
+				- John Sherman Cooper
+			</div>
+			<br><br><br>
+
+		</div>
+		
+		<script>
+		function responsive() {
+			var x = document.getElementById("navbar");
+			if (x.className === "navbar") {
+				x.className += " responsive";
+			} else {
+				x.className = "navbar";
+			}
+		}
+		</script>
+	</body>
+</html>

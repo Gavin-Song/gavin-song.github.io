@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Abridge - Chrome Summarizer</title>
+		
+		<meta charset="UTF-8">
+		<meta name="description" content="A chrome extension to automatically highlight and summarize webpages">
+		<meta name="keywords" content="Chrome,Extension,Summarize,automatic,github">
+		<meta name="author" content="Gavin Song">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Abridge - Summarizer Extension">
+		<meta property="og:description" content="Chrome extension to automaticlly summarize web articles, and more!">
+		<meta property="og:image" content="https://gavin-song.github.io/abridge/img/main.png">
+		<meta property="og:url" content="https://gavin-song.github.io/abridge">
+		
+		<meta name="twitter:card" content="summary_large_image">
+		<meta property="og:site_name" content="Abridge">
+
+		
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+	</head>
+	
+	<body>
+		<ul class="navbar" id="navbar">
+			<li class="image_icon"><img src="img/icon.png" width="78px" height="78px"></li>
+			<li id="icon"><a href="javascript:void(0);" class="icon" onclick="responsive()">&#9776;</a></li>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="tryitout.html">Try it out</a></li>
+			<li><a href="bug.html">Report a Bug</a></li>
+			<li><a href="donate.html">Donate</a></li>
+			<li><a href="faq.html">FAQ</a></li>
+		</ul>
+		
+		<div style='width: 50%; left: 25%; position: relative; top: 100px;'>
+			<h2 style='text-align:center; margin:10px'>Frequently Asked Questions</h2>
+			<ul>
+				<li style='margin:5px'><b>What Does Debug Mode Do?</b> Debug mode adds more information on the 
+				inner workings of the extension, which you might find interesting (Or not)</li>
+				<li style='margin:5px'><b>What Does Search All Tags Do?</b> This feature makes the extension search 
+				<b>all</b> the text on the webpage, rather than just paragraph tags. This is used 
+				on webpages that don't necessarily use paragraph tags. <a href="http://www.comptechdoc.org/independent/web/html/terms/html-paragraph-tag.html">
+				What's a paragraph tag?</a></li>
+				<li style='margin:5px'><b>What Does No Timeout Do?</b>If you're on a very slow computer and it takes too long to summarize 
+				the webpage, the extension will ask if you want to exit. Enabling this will disable that popup.</li>
+				<li style='margin:5px'><b>What Does Search Hidden Do?</b> Some webpages have invisible text that you aren't meant to see.
+				You can enable this to have the extension analyze invisible text too, but it's not recommended.</li>
+				<li style='margin:5px'><b>I have a bug/feature suggestion</b> See the "Report a bug" tab above.</li>
+				<li style='margin:5px'><b>I want to support this</b> See the "Donate" tab above.</li>
+			</ul>
+			
+		</div>
+		
+		<script>
+		function responsive() {
+			var x = document.getElementById("navbar");
+			if (x.className === "navbar") {
+				x.className += " responsive";
+			} else {
+				x.className = "navbar";
+			}
+		}
+		</script>
+	</body>
+</html>
