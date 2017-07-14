@@ -49,7 +49,7 @@ a{
 	height: 50px;
 	line-height: 50px;
 	
-	transition: 1s;
+	transition: background-color 1s;
 }
 
 .navbar li a:hover {
