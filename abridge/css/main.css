@@ -153,6 +153,7 @@ a{
 	position: absolute; 
 	left: 50%;
 	width: 45%;
+	max-width: 680px;
 	top: 17%;
 }
 
