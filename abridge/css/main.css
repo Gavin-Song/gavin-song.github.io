@@ -137,6 +137,7 @@ a{
 .button:hover{
 	background-color: #DDD;
 	transition: 1s;
+	cursor:pointer;
 }
 
 .title_section{
