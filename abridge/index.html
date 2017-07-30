@@ -47,7 +47,7 @@
 				Install for Google Chrome
 				</div>
 			</div>
-			<img class="image_section" src="img/sample1.png">
+			<img class="image_section" id="main_image" src="img/sample1.png">
 		</div>
 		
 		<div class="middle">
@@ -110,6 +110,19 @@
 				x.className = "navbar";
 			}
 		}
+		
+		var i = 2;
+		
+		function changeImage(){
+			document.getElementById("main_image").src = "img/sample" + i + ".png";
+			i += 1;
+			if( i > 4 ){
+				i = 1;
+			}
+			
+			setTimeout(changeImage, 5000);
+		}
+		setTimeout(changeImage, 5000);
 		</script>
 	</body>
 </html>
