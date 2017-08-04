@@ -15,6 +15,10 @@ a{
 	text-decoration: none;
 }
 
+.nostylelink{
+	color: white !important;
+}
+
 /*The nav bar*/
 .navbar{
     list-style-type: none;
