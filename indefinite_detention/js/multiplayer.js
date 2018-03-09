@@ -4,7 +4,7 @@ const API_KEY = 'iv2dx13mcbbotj4i' // Peer.js API key
 
 // Website root url (before the game file), don't end with a /
 // ROOT_URL + "/index.html" should direct to the game on your website
-const ROOT_URL = ""
+const ROOT_URL = "https://gavin-song.github.io/indefinite_detention/"
 
 var peer
 var current_peers = {}
@@ -43,9 +43,10 @@ function createPeer(h){
 
     peer.on('open', function(id) {
         if(is_host){
+            // <a> is intended not to have a href, so you don't accidently click on it as host
             document.getElementById("url").innerHTML =
             "<span style='color: white'>Share this link with your accomplices</span><br>"
-            + "/index.html?id=" + encodeURIComponent(id)
+            + ROOT_URL + "/index.html?id=" + encodeURIComponent(id)
         }
     });
 
