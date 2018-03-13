@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Chemistry Formatter</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Gavin Song's website">
+        <meta name="author" content="Gavin Song">
+
+        <!-- External JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <!-- External CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../css/navbar.css">
+
+        <!-- Editor -->
+        <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+
+
+        <style>
+            /* Hide some popups from the editor */
+            .mce-label, #mceu_31{ display: none !important; }
+
+            /* Submit button */
+            button[type=submit]{
+                width: 603px;
+                padding: 15px;
+                border: none;
+                outline: none;
+
+                background-color: #333;
+                color: #FFE57F;
+                font-weight: 900;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="/">
+                        <img class="navbar-icon" src="../img/icon.png">
+                        <span style='color: #FFE57F'>GAVIN &nbsp; </span>
+                        <span style='color: #FFFFFF'>SONG</span>
+                    </a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/projects.html">Projects</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/other.html">Other</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="full-width-title">CHEMISTRY FORMATTER</div>
+
+            <div class="container">
+                <br>
+                <form action="index.html" id="lab-content" method="get">
+                    <textarea name="text" id="textarea"></textarea>
+                    <button type="submit">FORMAT THE TEXT!</button>
+                </form>
+
+                <br>
+                <p style='width: 50%'>
+                    Paste your text in, and it will automatically subscript/superscript any chemical elements present in the text. For example, <br>
+                </p>
+                <blockquote>CO2 becomes CO<sub>2</sub> and OH- becomes OH<sup>-</sup></blockquote>
+                <p style='width: 50%'>
+                    This will probably break on any lists or titles you have, so you might need to do some manual formatting after. Still, less work
+                    than manually sub/superscripting.
+                </p>
+                <br>
+                <p style='width: 50%'>
+                    <b>Regexes Used</b> (In case you were curious or something) (All are global)
+                </p>
+                <pre style='width: 50%'>
+([H|He|Li|Be|B|C|N|O|F|Ne|Na|Mg|Al|Si|P|S|Cl|Ar|K|Ca|Sc|Ti|V|Cr|Mn|Fe|Co|Ni|Cu|Zn|Ga|Ge|As|Se|Br|Kr|Rb|Sr|Y|Zr|Nb|Mo|Tc|Ru|Rh|Pd|Ag|Cd|In|Sn|Sb|Te|I|Xe|Cs|Ba|La|Ce|Pr|Nd|Pm|Sm|Eu|Gd|Tb|Dy|Ho|Er|Tm|Yb|Lu|Hf|Ta|W|Re|Os|Ir|Pt|Au|Hg|Tl|Pb|Bi|Po|At|Rn|Fr|Ra|Ac|Th|Pa|U|Np|Pu|Am|Cm|Bk|Cf|Es|Fm|Md|No|Lr|Rf|Db|Sg|Bh|Hs|Mt|Ds|Rg|Cn|Nh|Fl|Mc|Lv|Ts|Og|Uue])(\d)([^+-])
+([H|He|Li|Be|B|C|N|O|F|Ne|Na|Mg|Al|Si|P|S|Cl|Ar|K|Ca|Sc|Ti|V|Cr|Mn|Fe|Co|Ni|Cu|Zn|Ga|Ge|As|Se|Br|Kr|Rb|Sr|Y|Zr|Nb|Mo|Tc|Ru|Rh|Pd|Ag|Cd|In|Sn|Sb|Te|I|Xe|Cs|Ba|La|Ce|Pr|Nd|Pm|Sm|Eu|Gd|Tb|Dy|Ho|Er|Tm|Yb|Lu|Hf|Ta|W|Re|Os|Ir|Pt|Au|Hg|Tl|Pb|Bi|Po|At|Rn|Fr|Ra|Ac|Th|Pa|U|Np|Pu|Am|Cm|Bk|Cf|Es|Fm|Md|No|Lr|Rf|Db|Sg|Bh|Hs|Mt|Ds|Rg|Cn|Nh|Fl|Mc|Lv|Ts|Og|Uue])(\d*)([+-])
+\^(\d+[+-]*)</pre>
+
+                <p style='width: 50%'>
+                    <br>
+                    <b>Will there be a copy button?</b><br>
+                    I don't think it's possible to automatically copy styles in javascript (Yet).
+                </p>
+
+                <br>
+            </div>
+        </div>
+
+        <script>
+            const ELE_REGEX = /([H|He|Li|Be|B|C|N|O|F|Ne|Na|Mg|Al|Si|P|S|Cl|Ar|K|Ca|Sc|Ti|V|Cr|Mn|Fe|Co|Ni|Cu|Zn|Ga|Ge|As|Se|Br|Kr|Rb|Sr|Y|Zr|Nb|Mo|Tc|Ru|Rh|Pd|Ag|Cd|In|Sn|Sb|Te|I|Xe|Cs|Ba|La|Ce|Pr|Nd|Pm|Sm|Eu|Gd|Tb|Dy|Ho|Er|Tm|Yb|Lu|Hf|Ta|W|Re|Os|Ir|Pt|Au|Hg|Tl|Pb|Bi|Po|At|Rn|Fr|Ra|Ac|Th|Pa|U|Np|Pu|Am|Cm|Bk|Cf|Es|Fm|Md|No|Lr|Rf|Db|Sg|Bh|Hs|Mt|Ds|Rg|Cn|Nh|Fl|Mc|Lv|Ts|Og|Uue])(\d)([^+-])/g;
+            const ELE_CHARGE_REGEX = /([H|He|Li|Be|B|C|N|O|F|Ne|Na|Mg|Al|Si|P|S|Cl|Ar|K|Ca|Sc|Ti|V|Cr|Mn|Fe|Co|Ni|Cu|Zn|Ga|Ge|As|Se|Br|Kr|Rb|Sr|Y|Zr|Nb|Mo|Tc|Ru|Rh|Pd|Ag|Cd|In|Sn|Sb|Te|I|Xe|Cs|Ba|La|Ce|Pr|Nd|Pm|Sm|Eu|Gd|Tb|Dy|Ho|Er|Tm|Yb|Lu|Hf|Ta|W|Re|Os|Ir|Pt|Au|Hg|Tl|Pb|Bi|Po|At|Rn|Fr|Ra|Ac|Th|Pa|U|Np|Pu|Am|Cm|Bk|Cf|Es|Fm|Md|No|Lr|Rf|Db|Sg|Bh|Hs|Mt|Ds|Rg|Cn|Nh|Fl|Mc|Lv|Ts|Og|Uue])(\d*)([+-])/g;
+
+            let params = window.location.href.split("?text=");
+            if(params.length > 1){
+                // Decode the parameter HTML
+                params = decodeURIComponent(params[1].replace(/\+/g, " "));
+
+                // Replace any chemistry formulas with subscripts and superscripts
+                params = params.replace(/\^(\d+[+-]*)/g, "<sup>$1</sup>"); // Replace powers, ie ^2- (Charges included)
+                while(params.search(ELE_REGEX) !== -1)  // Required as "in betweens" don't match
+                    params = params.replace(ELE_REGEX,"$1<sub>$2</sub>$3");  // Replace element subscripts, ie CO<sub>2</sub>
+                while(params.search(ELE_CHARGE_REGEX) !== -1)
+                    params = params.replace(ELE_CHARGE_REGEX,"$1<sup>$2$3</sup>");  // Replace element subscripts, ie CO<sub>2</sub>
+
+                // Set the text area to the new parameters
+                document.getElementById("textarea").innerHTML = params;
+            }
+
+            tinymce.init({
+                selector: "#textarea",
+                width: 600,
+                height: 300,
+                min_height: 300,
+                max_height: 300
+            });
+        </script>
+
+        <br>
+
+        <!-- Footer -->
+        <div class="footer">
+            Copyright &copy; <span id="current_year">2018</span> — All Rights Reserved — Made with
+            <span style="color: #E91E63">&#10084;</span> by Gavin Song
+        </div>
+    </body>
+</html>
