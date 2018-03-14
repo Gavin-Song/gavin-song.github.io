@@ -86,6 +86,9 @@
                     Paste your text in, and it will automatically subscript/superscript any chemical elements present in the text. For example, <br>
                 </p>
                 <blockquote>CO2 becomes CO<sub>2</sub> and OH- becomes OH<sup>-</sup></blockquote>
+				<blockquote>HCl -> H+ + Cl- becomes HCl &#8652; H<sup>+</sup> + Cl<sup>-</sup></blockquote>
+				<blockquote>HNO2 <-> H+ + NO2- becomes HNO<sub>2</sub> &#8594; H<sup>+</sup> + NO<sub>2</sub><sup>-</sup></blockquote>
+				
                 <p style='width: 50%; min-width: 400px'>
                     This will probably break on any lists or titles you have, so you might need to do some manual formatting after. Still, less work
                     than manually sub/superscripting.
@@ -124,6 +127,9 @@
                     params = params.replace(ELE_REGEX,"$1<sub>$2</sub>$3");  // Replace element subscripts, ie CO<sub>2</sub>
                 while(params.search(ELE_CHARGE_REGEX) !== -1)
                     params = params.replace(ELE_CHARGE_REGEX,"$1<sup>$2$3</sup>");  // Replace element subscripts, ie CO<sub>2</sub>
+ 
+				params = params.replace(/&lt;-&gt;/g, "&#8652;"); // -> becomes unicode arrow 
+				params = params.replace(/-&gt;/g, "&#8594;");     // <-> becomes unicode double arrow
 
                 // Set the text area to the new parameters
                 document.getElementById("textarea").innerHTML = params;
