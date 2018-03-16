@@ -3,6 +3,10 @@ body{
     font-size: 17px;
 }
 
+pre{
+    border-radius: 0;
+}
+
 .font-bold{ font-weight: 900; }
 
 /* Shifted down a bit to account for
