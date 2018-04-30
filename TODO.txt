@@ -1,0 +1,26 @@
+
+
+Fix visited links on navbar
+
+
+-- Misc stuff --
+
+<link rel="stylesheet" href="css/console.css">
+
+<!-- <div class="console">
+    <div class="window-title noselect">
+        <img src="img/terminal-icon.png" alt="terminal icon" width="20" height="20" style="float: left; margin-right: 10px">
+        WEB CONSOLE
+    </div>
+
+    <div style="margin: 10px" id="console-window">
+        <span id="console-content" class="console-content"></span>
+
+        <span id="console-input" class="console-input-wrapper">
+            <label class="console-label"><span style='color: #81D4FA'>web</span><span style='color: white'>@</span>gavin-github-site:~$</label>
+            <input id="console" type="text" class="console-input"
+                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                 autofocus="autofocus"></input>
+        </span>
+    </div>
+</div> -->

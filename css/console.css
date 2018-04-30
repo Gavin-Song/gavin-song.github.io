@@ -1,0 +1,46 @@
+.console-input{
+    background-color: transparent;
+    outline: none;
+    border: none;
+
+    width: calc(100% - 184px);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.console-label{
+    display: inline-block;
+    margin: 0;
+
+    width: 175px;
+    font-weight: normal;
+    color: #FFF59D;
+    text-align: left;
+}
+
+.console{
+    position: absolute;
+    top: -25px;
+    left: 50%;
+
+    height: 400px;
+    width: 50%;
+    word-break: break-all;
+
+    overflow: hidden;
+    border: 1px solid #FFF9C4;
+    font-size: 12px;
+
+    background-color: rgba(0,0,0,0.15);
+}
+
+#console-window{
+    overflow: hidden;
+    height: 345px;
+}
+
+.window-title{
+    padding: 5px 5px;
+    background-color: #FFF9C4;
+    color: #263238;
+    font-size: 16px;
+}
