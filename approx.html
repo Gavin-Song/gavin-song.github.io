@@ -92,24 +92,24 @@
             </div>
         </nav>
 
-        <div class="container">
-		<h1>BC Calc Numeric Approximation Comparison</h1>
-		<p>
-			Some caveats
-			<ul>
-				<li>You must specify multiplication, ie write xy as x * y</li>
-				<li>square root is either Math.sqrt(value) or value ^ 0.5</li>
-				<li>Trig is Math.sin, Math.cos, Math.tan, etc...</li>
-			</ul>
-		</p>
-		
-		<input id="function" placeholder="function"/>
-		<input id="step-size" placeholder="step size"/>
-		<input id="initial-value" placeholder="initial value (x, y)"/>
-		<input id="target-value" placeholder="target x"/>
-		<button id="calculate" onclick="buttonClick()">Compare</button>
-	</div>
-	<hr>
+        <div class="content container">
+			<h1>BC Calc Numeric Approximation Comparison</h1>
+			<p>
+				Some caveats
+				<ul>
+					<li>You must specify multiplication, ie write xy as x * y</li>
+					<li>square root is either Math.sqrt(value) or value ^ 0.5</li>
+					<li>Trig is Math.sin, Math.cos, Math.tan, etc...</li>
+				</ul>
+			</p>
+			
+			<input id="function" placeholder="function"/>
+			<input id="step-size" placeholder="step size"/>
+			<input id="initial-value" placeholder="initial value (x, y)"/>
+			<input id="target-value" placeholder="target x"/>
+			<button id="calculate" onclick="buttonClick()">Compare</button>
+			
+			<hr>
 	
 	<div id="chart"></div>
 	
@@ -125,6 +125,9 @@
 		<th>Runge Kutta Method</th>
 		<tr><td>x</td><td>y</td><td>dy</td></tr>
 	</table>
+	
+		</div>
+	
 	
 	<script>
 		function evaluateDerv(func, x, y) {
