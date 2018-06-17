@@ -1,0 +1,294 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>BC Calc Approx</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Gavin Song's website">
+        <meta name="author" content="Gavin Song">
+
+        <!-- External JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <!-- External CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/navbar.css">
+		
+		<!-- Favicon -->
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="theme-color" content="#ffffff">
+		
+      <!-- Load c3.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.1/c3.css" rel="stylesheet">
+
+    <!-- Load d3.js and c3.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.1/c3.min.js"></script>
+
+    <style>
+      body {
+        font-family: 'Oxygen', sans-serif;
+      }
+
+      table {
+        float: left;
+        margin: 15px;
+        border: 1px solid grey;
+        max-height: 300px;
+        padding: 5px;
+
+        display: block;
+            max-width: 400px;
+            overflow: scroll
+      }
+
+      td {
+        padding: 0 15px 0 15px;
+      }
+
+      #chart {
+        width: 90%;
+      }
+
+      input, button {
+        padding: 5px 10px;
+      }
+    </style>
+    
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="/">
+                        <img class="navbar-icon" src="img/icon.png">
+                        <span style='color: #FFE57F'>GAVIN &nbsp; </span>
+                        <span style='color: #FFFFFF'>SONG</span>
+                    </a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/projects.html">Projects</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/other.html">Other</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div style="margin: 20px">
+		<h1>BC Calc Numeric Approximation Comparison</h1>
+		<p>
+			Some caveats
+			<ul>
+				<li>You must specify multiplication, ie write xy as x * y</li>
+				<li>square root is either Math.sqrt(value) or value ^ 0.5</li>
+				<li>Trig is Math.sin, Math.cos, Math.tan, etc...</li>
+			</ul>
+		</p>
+		
+		<input id="function" placeholder="function"/>
+		<input id="step-size" placeholder="step size"/>
+		<input id="initial-value" placeholder="initial value (x, y)"/>
+		<input id="target-value" placeholder="target x"/>
+		<button id="calculate" onclick="buttonClick()">Compare</button>
+	</div>
+	<hr>
+	
+	<div id="chart"></div>
+	
+	<table id="eulers">
+		<th>Euler's Method</th>
+		<tr><td>x</td><td>y</td><td>dy/dx</td><td>dy</td></tr>
+	</table>
+	<table id="eulers-better">
+		<th>Huen's Method</th>
+		<tr><td>x</td><td>y</td><td>dy/dx</td><td>dy</td></tr>
+	</table>
+	<table id="runge-kutta">
+		<th>Runge Kutta Method</th>
+		<tr><td>x</td><td>y</td><td>dy</td></tr>
+	</table>
+	
+	<script>
+		function evaluateDerv(func, x, y) {
+			return eval('let x = ' + x + ';let y = ' + y + ';' + func);
+		}
+		
+		function roundAllValues(output) {
+			return output.map(x =>
+				x.toFixed(2)
+			);
+		}
+		
+		function doEulers(func, initial_pos, step_size, target) {
+			let output = [];
+			let y = initial_pos[1];
+			
+			for (let x = initial_pos[0]; x <= target; x+=step_size) {
+				let dydx = evaluateDerv(func, x, y);
+				
+				output.push([x, y, dydx, dydx * step_size]);
+				y += dydx * step_size;
+			}
+			output = output.map(roundAllValues);
+			return output;
+		}
+		
+		function doBetterEulers(func, initial_pos, step_size, target) {
+			let output = [];
+			let y = initial_pos[1];
+			
+			for (let x = initial_pos[0]; x <= target; x+=step_size) {
+				let dydx1 = evaluateDerv(func, x, y);
+				let dydx2 = evaluateDerv(func, x + step_size, y + dydx1 * step_size);
+				let dydx = (dydx1 + dydx2) / 2;
+				
+				output.push([x, y, dydx, dydx * step_size]);
+				y += dydx * step_size;
+			}
+			output = output.map(roundAllValues);
+			return output;
+		}
+		
+		function rungeKutta(func, initial_pos, h, target) {
+			let output = [];
+			let y = initial_pos[1];
+			
+			for (let x = initial_pos[0]; x <= target; x+=h) {
+				let k1 = evaluateDerv(func, x, y);
+				let k2 = evaluateDerv(func, x + h/2, y + h/2 * k1);
+				let k3 = evaluateDerv(func, x + h/2, y + h/2 * k2);
+				let k4 = evaluateDerv(func, x + h, y + h * k3);
+				
+				let dy = h / 6 * (k1 + 2 * k2 + 2 * k3 + k4);
+				output.push([x, y, dy]);
+				y += dy;
+			}
+			output = output.map(roundAllValues);
+			return output;
+		}
+		
+		function renderTables(data1, data2, data3) {
+			let tables = ['eulers', 'eulers-better', 'runge-kutta'];
+			for (let table of tables) {
+				document.getElementById(table).innerHTML = '';
+			}
+			
+			document.getElementById('eulers').innerHTML =
+				"<th>Euler's Method</th>" + 
+				'<tr><td>x</td><td>y</td><td>dy/dx</td><td>dy</td></tr>' + 
+				data1
+					.map(x => x.map(x => '<td>' + x + '</td>').join('\n'))
+					.map(x => '<tr>' + x + '</tr>')
+					.join('\n');
+			document.getElementById('eulers-better').innerHTML =
+				"<th>Huen's Method</th>" + 
+				'<tr><td>x</td><td>y</td><td>dy/dx</td><td>dy</td></tr>' + 
+				data2
+					.map(x => x.map(x => '<td>' + x + '</td>').join('\n'))
+					.map(x => '<tr>' + x + '</tr>')
+					.join('\n');
+			document.getElementById('runge-kutta').innerHTML =
+				"<th>Runge Kutta Method</th>" + 
+				'<tr><td>x</td><td>y</td><td>dy</td></tr>' + 
+				data3
+					.map(x => x.map(x => '<td>' + x + '</td>').join('\n'))
+					.map(x => '<tr>' + x + '</tr>')
+					.join('\n');		
+		}
+		
+		function generateChart(data1, data2, data3, initial, final, h) {
+			let data1x, data2x, data3x;
+			data1x = data1.map(x => x[1]);
+			data2x = data2.map(x => x[1]);
+			data3x = data3.map(x => x[1]);
+			
+			let diff = final - initial;
+			let length = diff / h + h;
+
+			let chart = c3.generate({
+				bindto: '#chart',
+				data: {
+					xs: {
+			            'Euler\'s method': 'data1',
+			            'Huen\'s method': 'data2',
+			            'Runge-Kutta method (4th order)': 'data3'
+			        },
+					columns: [
+						['Euler\'s method'].concat(data1x),
+						['Huen\'s method'].concat(data2x),
+						['Runge-Kutta method (4th order)'].concat(data3x),
+						
+						['data1'].concat(data1.map(x => x[0])),
+						['data2'].concat(data2.map(x => x[0])),
+						['data3'].concat(data3.map(x => x[0]))
+					]
+				},
+				axis: {
+					x: {
+						tick: {
+							values: Array.from({length: length}, (x, i) => i * h + initial)
+								.map(x => x.toFixed(1))
+						}
+					}
+				}
+			});
+		}
+		
+		function buttonClick() {
+			let func = document.getElementById('function').value;
+			
+			func = func.replace(/\^/g, '**');
+			
+			let step_size = +document.getElementById('step-size').value;
+			let initial_value = document.getElementById('initial-value')
+				.value
+				.split(',')
+				.map(x => +x);
+			let target_value = +document.getElementById('target-value').value;
+			
+			if (step_size <= 0) {
+				alert("Step size must > 0");
+				return;
+			}
+			
+			let data1 = doEulers(func, initial_value, step_size, target_value);
+			let data2 = doBetterEulers(func, initial_value, step_size, target_value);
+			let data3 = rungeKutta(func, initial_value, step_size, target_value);
+			
+			generateChart(data1, data2, data3, initial_value[0], target_value, step_size);
+			renderTables(data1, data2, data3);
+		}
+		
+	</script>
+  
+        <br>
+
+        <!-- Footer -->
+        <div class="footer">
+            Copyright &copy; <span id="current_year">2018</span> — All Rights Reserved — Made with
+            <span style="color: #E91E63">&#10084;</span> by Gavin Song
+        </div>
+    </body>
+</html>
